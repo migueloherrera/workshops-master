@@ -24,7 +24,6 @@ class ProductsController < ApplicationController
   def create
     if user_signed_in?
       self.product = Product.new(product_params)
-      product.user = current_user
 
       if product.save
         category.products << product

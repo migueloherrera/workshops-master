@@ -12,17 +12,13 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    if current_user.admin?
-      category  = Category.new
-    else
+    if !current_user.admin?
       redirect_to new_user_session_path
     end
   end
 
   def edit
-    if current_user.admin?
-      category  = Category.find(params[:id])
-    else
+    if !current_user.admin?
       redirect_to new_user_session_path
     end
   end
@@ -56,8 +52,10 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    category.destroy
-    redirect_to categories_url, notice: 'Category was successfully destroyed.'
+    if current_user.admin?
+      category.destroy
+      redirect_to categories_url, notice: 'Category was successfully destroyed.'
+    end
   end
 
   private

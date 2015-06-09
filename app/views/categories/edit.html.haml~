@@ -1,7 +1,6 @@
 %h1 Editing category
 
-if current_user.admin?
-  = render 'form'
+= render 'form'
 
 = link_to 'Show', category
 \|

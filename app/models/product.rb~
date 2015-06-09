@@ -9,6 +9,6 @@ class Product < ActiveRecord::Base
   def average_rating
     #review_sum = reviews.map(:rating).reduce(:+)
     review_sum = reviews.inject(0) { |sum, review| sum += review.rating }
-    return (review_sum.to_f / reviews.count) unless review_sum == 0
+    return (review_sum / reviews.count) unless review_sum == 0
   end
 end
