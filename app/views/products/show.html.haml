@@ -1,9 +1,9 @@
-%p#notice= notice
 %p#error= flash[:error]
 
 %p
-  %b Title:
-  = product.title
+  %h3
+    %b= product.title
+  %hr
 %p
   %b Description:
   = product.description
@@ -14,12 +14,20 @@
 %p
   %b Category
   = product.category.name
+%hr
+%h3 Review this product
 
-%h3 Reviews
 = render 'reviews/form'
 
+%h3
+  = product.reviews.count 
+  Reviews
+  
 = render reviews
 
-= link_to 'Edit', edit_category_product_path(category.id, product.id)
-\|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+%br/
+
+- if user_signed_in? && current_user.admin?
+  = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-primary'
+  \|
+  = link_to 'Back', category_products_path, class: 'btn btn-primary' 

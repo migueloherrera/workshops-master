@@ -1,7 +1,7 @@
 %h1 Editing category
 
-= render 'form'
+- if current_user.admin?
+  = render 'form'
 
-= link_to 'Show', category
-\|
+\
 = link_to 'Back', categories_path, class: 'btn btn-primary'
