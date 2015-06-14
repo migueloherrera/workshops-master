@@ -11,10 +11,9 @@
       = link_to product.title, category_product_path(product.category, product), {:style=>"border: none;"}
 
 %p
-  - if user_signed_in? && current_user.admin?
+  - if user_signed_in? 
     %h3 New product
     = render 'products/form'
-    %br/
-    = link_to 'Edit', edit_category_path(category), class: 'btn btn-primary'
     \|
+    
     = link_to 'Back', categories_path, class: 'btn btn-primary'

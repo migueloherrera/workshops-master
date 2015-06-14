@@ -3,6 +3,7 @@
     Category:
     %b
       = category.name
+    %hr
 
 %p
   - category.products.each do |product|
@@ -13,7 +14,6 @@
   - if user_signed_in? && current_user.admin?
     %h3 New product
     = render 'products/form'
-    %br/
-    = link_to 'Edit', edit_category_path(category), class: 'btn btn-primary'
     \|
+    
     = link_to 'Back', categories_path, class: 'btn btn-primary'

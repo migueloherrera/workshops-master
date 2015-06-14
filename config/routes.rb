@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   resources :users
   resources :categories do
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
   end
 
   root 'categories#index'
+  get '/users/:id' => 'users#show'
 end

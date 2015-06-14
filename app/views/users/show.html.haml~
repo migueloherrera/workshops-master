@@ -1,0 +1,37 @@
+%h3 
+  = current_user.firstname.upcase + " " + current_user.lastname.upcase
+  -if current_user.admin?
+    (Admin)
+%hr
+
+%h4
+  %em= "email: " 
+  %b= current_user.email
+  
+%br
+%h4 
+  Member since: 
+  %em= current_user.created_at.strftime("%b %d %Y")
+%br
+%h4 
+  Last Activity:
+  %em= current_user.last_sign_in_at.strftime("%b %d %Y  at  %H:%M %P")
+  
+%br
+
+%h4
+  %em Last reviews
+
+%table.table.table-hover
+  %tr
+    %th Product
+    %th Review
+    %th Date
+  - reviews.last(5).reverse.each do |r|  
+    %tr
+      %td= r.product.title
+      %td= r.content
+      %td= r.created_at.strftime("%d-%m-%y")
+%br
+  
+  

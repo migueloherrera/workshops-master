@@ -1,6 +1,7 @@
 #reviews
   %p= review.content
-  %p
-    %b Rating: 
-    %b= review.rating
+  %b Rating: 
+  %b= review.rating
+  %p 
+    by
     %em= review.author

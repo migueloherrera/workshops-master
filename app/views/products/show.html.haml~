@@ -9,13 +9,18 @@
   = product.description
 %p
   %b Price:
+  $
   = product.price
-
+%p
+  %b Rating:
+  = '%.2f' % product.average_rating
+  out of 5  
 %p
   %b Category
   = product.category.name
 %hr
-%h3 Reviews
+-if user_signed_in?
+  %h3 Review this product
 
 = render 'reviews/form'
 
@@ -27,7 +32,6 @@
 
 %br/
 
-- if user_signed_in? && current_user.admin?
-  = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-primary'
-  \|
-  = link_to 'Back', category_products_path, class: 'btn btn-primary' 
+
+= link_to 'Back', category_products_path, class: 'btn btn-primary' 
+%p

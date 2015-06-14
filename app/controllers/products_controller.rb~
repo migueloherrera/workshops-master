@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   def create
     if user_signed_in?
       self.product = Product.new(product_params)
+      product.user = current_user
 
       if product.save
         category.products << product
@@ -53,11 +54,15 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1
   def destroy
-    if user_signed_in?
-      product.destroy
-      redirect_to category_url(product.category), notice: 'Product was successfully destroyed.'
+    if user_signed_in? 
+      if current_user != product.user || !current_user.admin?
+        redirect_to category_url(product.category), notice: 'You are not allowed to delete this product'
+      else
+        product.destroy
+        redirect_to category_url(product.category), notice: 'Product was successfully destroyed.'
+      end
     else
-      redirect_to new_user_session_path
+      redirect_to new_user_session_path 
     end
   end
 

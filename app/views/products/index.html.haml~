@@ -1,24 +1,21 @@
 %h1 Listing products
 
-%table
-  %tr.row
-    %th.col-md-4 
-      %h3 Title
-    %th.col-md-4 
-      %h3 Description
-    %th.col-md-4 
-      %h3 Price
+%table.table.table-hover
+  %tr
+    %th Title
+    %th Description
+    %th Price
     %th
     %th
     %th
 
   - products.each do |product|
-    %tr.row
-      %td= product.title
+    %tr
+      %td= product.user
       %td= product.description
       %td= product.price
       %td= link_to 'Show', category_product_path(product.category, product) 
-      %td= link_to 'Edit', edit_category_product_path(product.category, product) if user_signed_in? && current_user.admin?
-      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? && current_user.admin?
+      %td= link_to 'Edit', edit_category_product_path(product.category, product) if user_signed_in? 
+      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' } if user_signed_in? 
 
 %br

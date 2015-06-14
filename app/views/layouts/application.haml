@@ -16,7 +16,7 @@
           %span.navbar-brand #{AppConfig.workshops_name}
         %p.navbar-text.navbar-right
           - if user_signed_in?
-            = current_user.firstname
+            = link_to current_user.firstname, user_path(current_user)
             = link_to "Log Out", destroy_user_session_path, :method => :delete
           - else
             = link_to "Log In", new_user_session_path
@@ -26,7 +26,7 @@
         
           %hr
 
-          = link_to "Categories", root_path, {style: "border: none; font-size: 150%;"}
+          = link_to "Home", root_path, {style: "border: none; font-size: 150%;"}
           %hr
           
         .col-md-8{:style => "background-color:white;"}

@@ -1,6 +1,8 @@
-- if user_signed_in?
+- if user_signed_in? && current_user == product.user
   %h1 New product
 
   = render 'form'
-
-  = link_to 'Back', category_products_path
+  \|
+  = link_to 'Back', category_products_path, class: "btn btn-primary"
+%p
+%br/
